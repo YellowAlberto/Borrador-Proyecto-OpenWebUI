@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "random-number-dev": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/workspace/ai-solver/src/examples/random-ext",
+        "run",
+        "random-number-mcp"
+      ]
+    }
+  }
+}
