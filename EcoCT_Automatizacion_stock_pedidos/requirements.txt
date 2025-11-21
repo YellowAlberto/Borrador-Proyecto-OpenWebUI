@@ -1,0 +1,7 @@
+# Librerías para el procesamiento de datos y manejo de hojas de cálculo
+pandas
+gspread
+oauth2client
+
+# Librerías para la programación de tareas y control de tiempo
+schedule
