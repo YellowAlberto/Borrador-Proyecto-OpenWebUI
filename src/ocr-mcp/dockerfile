@@ -1,0 +1,18 @@
+FROM python:3.10-slim
+
+# Instalar dependencias de sistema para OpenCV
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Instalar librerías
+RUN pip install mcp[cli] easyocr opencv-python-headless uvicorn fastapi sse-starlette
+
+# Copiar el código
+COPY ocr-matriculas.py .
+
+# Ejecutar servidor
+CMD ["python", "ocr-matriculas.py"]

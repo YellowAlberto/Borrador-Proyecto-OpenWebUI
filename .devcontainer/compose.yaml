@@ -29,20 +29,16 @@ services:
       - "3000:8080"
     restart: unless-stopped
 
-  mcpo-weather:
-    image: ghcr.io/open-webui/mcpo:main
-    command:
-      - --port
-      - "8001"
-      - --api-key
-      - ${MCPO_API_KEY:-weather-secret}
-      - --config
-      - /config/mcpo-weather.json
-      - --hot-reload
-    environment:
-      MCPO_API_KEY: ${MCPO_API_KEY:-weather-secret}
+  ocr-mcp:
+    build:
+      # Contexto: Subimos a raiz (..), entramos a src, entramos a ocr-mcp
+      context: ../src/ocr-mcp
+      # Nos aseguramos que lea el archivo que acabamos de renombrar
+      dockerfile: Dockerfile
+    container_name: ocr-mcp
     volumes:
-      - ./mcpo-weather.json:/config/mcpo-weather.json:ro
+      # Mapeamos la carpeta que acabas de crear en la raíz
+      - ../imagenes_contenedores:/data 
     networks:
       - ai-solver
     ports:
